@@ -9,6 +9,9 @@
 (setq ryan-website-preamble
       "<img src=\"./images/avatar.jpg\" height=\"200px\" width=\"200px\"")
 
+(setq ryan-website-blog-preamble
+            "<img src=\"../images/avatar.jpg\" height=\"200px\" width=\"200px\"")
+
 (setq ryan-website-postamble
   "<div class='footer'>
 Copyright 2015 %a (%v HTML).<br>
@@ -53,7 +56,8 @@ Built with %c.
 	 :with-toc nil
 	 :with-drawers t
 	 :html-link-home "/"
-	 :html-postamble ryan-website-postamble
+	 :html-preamble ,ryan-website-blog-preamble
+	 :html-postamble ,ryan-website-postamble
 	 :html-head ,ryan-website-blog-html-head)
 	("images"
 	 :base-directory "/home/ryan/Network/org-blog/source/images"
@@ -69,18 +73,18 @@ Built with %c.
 	 :base-extension "css"
 	 :recursive t
 	 ;;	 :publishing-directory "/home/ryan/Network/org-blog/output/css"
- 	 :publishing-directory "/ryan@pallet-town:/usr/share/nginx/www/images"
+ 	 :publishing-directory "/ryan@pallet-town:/usr/share/nginx/www/css"
 	 :publishing-function org-publish-attachment
 	 :html-link-home "/"
 	 )
-;;	("rss"
-;;	 :base-directory "/home/ryan/Network/org-blog/source/blog"
-;;	 :base-extension "org"
-;;	 :recursive t
-;;	 :publishing-directory "/home/ryan/Network/org-blog/output/blog"
-;;	 :publishing-function 'toadd
-;;	 :html-link-home "/"
-;;	 )
+	;;	("rss"
+	;;	 :base-directory "/home/ryan/Network/org-blog/source/blog"
+	;;	 :base-extension "org"
+	;;	 :recursive t
+	;;	 :publishing-directory "/home/ryan/Network/org-blog/output/blog"
+	;;	 :publishing-function 'toadd
+	;;	 :html-link-home "/"
+	;;	 )
 	("website"
 	 :components ("www-pages" "blog" "images" "css"))))
 
