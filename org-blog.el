@@ -4,7 +4,10 @@
   "<link rel=\"stylesheet\" href=\"./css/stylesheet.css\" type=\"text/css\"/>")
 
 (setq ryan-website-blog-html-head
-  "<link rel=\"stylesheet\" href=\"../css/stylesheet.css\" type=\"text/css\"/>")
+      "<link rel=\"stylesheet\" href=\"../css/stylesheet.css\" type=\"text/css\"/>")
+
+(setq ryan-website-preamble
+      "<img src=\"./images/avatar.jpg\" height=\"200px\" width=\"200px\"")
 
 (setq ryan-website-postamble
   "<div class='footer'>
@@ -20,7 +23,7 @@ Built with %c.
 	 :base-directory "/home/ryan/Network/org-blog/source"
 	 :base-extension "org"
 	 :recursive t
-	 :publishing-directory "/home/ryan/Network/org-blog/output"
+	 :publishing-directory "/ryan@pallet-town:/usr/share/nginx/www"
 	 :publishing-function org-html-publish-to-html
 
 	 :with-author t
@@ -33,13 +36,15 @@ Built with %c.
 
 	 :html-link-home "/"
 	 :html-head ,ryan-website-html-head
+	 :html-preamble ,ryan-website-preamble
 	 :html-postamble ,ryan-website-postamble
 	 )
 	("blog"
 	 :base-directory "/home/ryan/Network/org-blog/source/blog"
 	 :base-extension "org"
 	 :recursive t
-	 :publishing-directory "/home/ryan/Network/org-blog/output/blog"
+	 ;;	 :publishing-directory "/home/ryan/Network/org-blog/output/blog"
+	 :publishing-directory "/ryan@pallet-town:/usr/share/nginx/www/blog"	 
 	 :publishing-function org-html-publish-to-html
 	 :with-author t
 	 :with-creator nil
@@ -54,7 +59,8 @@ Built with %c.
 	 :base-directory "/home/ryan/Network/org-blog/source/images"
 	 :base-extension "jpg\\|gif\\|png"
 	 :recursive t
-	 :publishing-directory "/home/ryan/Network/org-blog/output/images"
+	 ;;	 :publishing-directory "/home/ryan/Network/org-blog/output/images"
+ 	 :publishing-directory "/ryan@pallet-town:/usr/share/nginx/www/images"
 	 :publishing-function org-publish-attachment
 	 :html-link-home "/"
 	 )	
@@ -62,7 +68,8 @@ Built with %c.
 	 :base-directory "/home/ryan/Network/org-blog/source/css"
 	 :base-extension "css"
 	 :recursive t
-	 :publishing-directory "/home/ryan/Network/org-blog/output/css"
+	 ;;	 :publishing-directory "/home/ryan/Network/org-blog/output/css"
+ 	 :publishing-directory "/ryan@pallet-town:/usr/share/nginx/www/images"
 	 :publishing-function org-publish-attachment
 	 :html-link-home "/"
 	 )
