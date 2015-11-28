@@ -1,32 +1,54 @@
 (require 'org)
+;; publish trunk
+(setq publish-trunk "/pallet-town:/usr/share/nginx/www")
+
+;; All image conversion
+(setq org-html-inline-images t)
 
 (setq ryan-website-html-head
-  "<link rel=\"stylesheet\" href=\"./css/stylesheet.css\" type=\"text/css\"/>")
+      "<link rel=\"stylesheet\" href=\"./css/stylesheet.css\" type=\"text/css\"/>")
 
 (setq ryan-website-blog-html-head
       "<link rel=\"stylesheet\" href=\"../css/stylesheet.css\" type=\"text/css\"/>")
 
+(setq ryan-website-navigation
+      "<div class='nav'>
+      <ul>
+      <li><a href='/'>Home</a></li>
+      <li><a href='/blog/index.html'>Blog</a></li>
+      <li><a href='/homelab.html'>Homelab</a></li>
+      <li><a href='https://github.com/himmelwr'>Github</a></li>
+      <li><a href='https://twitter.com/himmAllRight17'>Twitter</a></li>
+      </ul>
+      </div>")
+
 (setq ryan-website-preamble
-      "<img src=\"./images/avatar.jpg\" height=\"200px\" width=\"200px\"")
+      (format "<img src=\"./images/avatar.jpg\" height=\"200px\" width=\"200px\">
+%s" ryan-website-navigation))
+
 
 (setq ryan-website-blog-preamble
-            "<img src=\"../images/avatar.jpg\" height=\"200px\" width=\"200px\"")
+      (format "<img src=\"../images/avatar.jpg\" height=\"200px\" width=\"200px\">
+%s" ryan-website-navigation))
 
-(setq ryan-website-postamble
-  "<div class='footer'>
+(setq ryan-website-footer
+      "<div class='footer'>
 Copyright 2015 %a (%v HTML).<br>
 Last updated %C. <br>
 Built with %c.
 </div>")
 
-(message ryan-website-blog-html-head)
+(setq ryan-website-blog-postamble
+      (format "<i>(Return to: <a href= '/'>Home</a> | <a href='/blog/index.html'>Blog Index</a>)</i>
+%s" ryan-website-footer))
+
 
 (setq org-publish-project-alist
       `(("www-pages"
 	 :base-directory "/home/ryan/Network/org-blog/source"
 	 :base-extension "org"
 	 :recursive t
-	 :publishing-directory "/ryan@pallet-town:/usr/share/nginx/www"
+	 :publishing-directory ,(concatenate 'string publish-trunk "")
 	 :publishing-function org-html-publish-to-html
 
 	 :with-author t
@@ -40,14 +62,14 @@ Built with %c.
 	 :html-link-home "/"
 	 :html-head ,ryan-website-html-head
 	 :html-preamble ,ryan-website-preamble
-	 :html-postamble ,ryan-website-postamble
+	 :html-postamble ,ryan-website-footer
 	 )
 	("blog"
 	 :base-directory "/home/ryan/Network/org-blog/source/blog"
 	 :base-extension "org"
 	 :recursive t
 	 ;;	 :publishing-directory "/home/ryan/Network/org-blog/output/blog"
-	 :publishing-directory "/ryan@pallet-town:/usr/share/nginx/www/blog"	 
+	 :publishing-directory ,(concatenate 'string publish-trunk "/blog")
 	 :publishing-function org-html-publish-to-html
 	 :with-author t
 	 :with-creator nil
@@ -57,14 +79,14 @@ Built with %c.
 	 :with-drawers t
 	 :html-link-home "/"
 	 :html-preamble ,ryan-website-blog-preamble
-	 :html-postamble ,ryan-website-postamble
+	 :html-postamble ,ryan-website-blog-postamble
 	 :html-head ,ryan-website-blog-html-head)
 	("images"
 	 :base-directory "/home/ryan/Network/org-blog/source/images"
 	 :base-extension "jpg\\|gif\\|png"
 	 :recursive t
 	 ;;	 :publishing-directory "/home/ryan/Network/org-blog/output/images"
- 	 :publishing-directory "/ryan@pallet-town:/usr/share/nginx/www/images"
+ 	 :publishing-directory ,(concatenate 'string publish-trunk "/images")
 	 :publishing-function org-publish-attachment
 	 :html-link-home "/"
 	 )	
@@ -73,7 +95,7 @@ Built with %c.
 	 :base-extension "css"
 	 :recursive t
 	 ;;	 :publishing-directory "/home/ryan/Network/org-blog/output/css"
- 	 :publishing-directory "/ryan@pallet-town:/usr/share/nginx/www/css"
+ 	 :publishing-directory ,(concatenate 'string publish-trunk "/css")
 	 :publishing-function org-publish-attachment
 	 :html-link-home "/"
 	 )
