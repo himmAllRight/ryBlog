@@ -1,5 +1,6 @@
 (require 'org)
 ;; publish trunk
+(setq source-trunk "/pallet-town:/home/ryan/Network/ryanSiteContent/source")
 (setq publish-trunk "/pallet-town:/usr/share/nginx/www")
 
 ;; All image conversion
@@ -12,7 +13,9 @@
       "<link rel=\"stylesheet\" href=\"../css/stylesheet.css\" type=\"text/css\"/>")
 
 (setq ryan-website-navigation
-      "<div class='nav'>
+      "Ryan Himmelwright
+ryan.himmelwright.net
+<div class='nav'>
       <ul>
       <li><a href='/'>Home</a></li>
       <li><a href='/blog/index.html'>Blog</a></li>
@@ -45,7 +48,7 @@ Built with %c.
 
 (setq org-publish-project-alist
       `(("www-pages"
-	 :base-directory "/home/ryan/Network/org-blog/source"
+	 :base-directory ,source-trunk
 	 :base-extension "org"
 	 :recursive t
 	 :publishing-directory ,(concatenate 'string publish-trunk "")
@@ -65,7 +68,7 @@ Built with %c.
 	 :html-postamble ,ryan-website-footer
 	 )
 	("blog"
-	 :base-directory "/home/ryan/Network/org-blog/source/blog"
+	 :base-directory ,(concatenate 'string source-trunk "/blog")
 	 :base-extension "org"
 	 :recursive t
 	 ;;	 :publishing-directory "/home/ryan/Network/org-blog/output/blog"
@@ -82,7 +85,7 @@ Built with %c.
 	 :html-postamble ,ryan-website-blog-postamble
 	 :html-head ,ryan-website-blog-html-head)
 	("images"
-	 :base-directory "/home/ryan/Network/org-blog/source/images"
+	 :base-directory ,(concatenate 'string source-trunk "/images")
 	 :base-extension "jpg\\|gif\\|png"
 	 :recursive t
 	 ;;	 :publishing-directory "/home/ryan/Network/org-blog/output/images"
@@ -91,7 +94,7 @@ Built with %c.
 	 :html-link-home "/"
 	 )	
 	("css"
-	 :base-directory "/home/ryan/Network/org-blog/source/css"
+	 :base-directory ,(concatenate 'string source-trunk "/css")
 	 :base-extension "css"
 	 :recursive t
 	 ;;	 :publishing-directory "/home/ryan/Network/org-blog/output/css"
