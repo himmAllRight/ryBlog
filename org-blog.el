@@ -5,8 +5,28 @@
 ;; All image conversion
 (setq org-html-inline-images t)
 
+(setq piwik-tracking-code
+      "<!-- Piwik -->
+<script type=\"text/javascript\">
+  var _paq = _paq || [];
+  _paq.push(['trackPageView']);
+  _paq.push(['enableLinkTracking']);
+  (function() {
+    var u=\"//himmelwright.net/piwik/\";
+    _paq.push(['setTrackerUrl', u+'piwik.php']);
+    _paq.push(['setSiteId', 2]);
+    var d=document, g=d.createElement('script'), s=d.getElementsByTagName('script')[0];
+    g.type='text/javascript'; g.async=true; g.defer=true; g.src=u+'piwik.js'; s.parentNode.insertBefore(g,s);
+  })();
+</script>
+<noscript><p><img src=\"//himmelwright.net/piwik/piwik.php?idsite=2\" style=\"border:0;\" alt=\"\" /></p></noscript>
+<!-- End Piwik Code -->")
+
 (setq ryan-website-html-head
-      "<link rel=\"stylesheet\" href=\"./css/stylesheet.css\" type=\"text/css\"/>")
+      (format
+       "<link rel=\"stylesheet\" href=\"./css/stylesheet.css\" type=\"text/css\"/>
+%s"
+       piwik-tracking-code))
 
 (setq ryan-website-blog-html-head
       "<link rel=\"stylesheet\" href=\"../css/stylesheet.css\" type=\"text/css\"/>")
