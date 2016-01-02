@@ -1,7 +1,7 @@
 (require 'org)
 ;; publish trunk
-(setq source-trunk "/pallet-town:/home/ryan/Network/ryanSiteContent/source")
-(setq publish-trunk "/pallet-town:/usr/share/nginx/www")
+(setq source-trunk "/home.himmelwright.net#1734:/home/ryan/Network/ryanSiteContent/source")
+(setq publish-trunk "/home.himmelwright.net#1734:/usr/share/nginx/www")
 
 ;; All image conversion
 (setq org-html-inline-images t)
@@ -33,9 +33,7 @@
       "<link rel=\"stylesheet\" href=\"../css/stylesheet.css\" type=\"text/css\"/>")
 
 (setq ryan-website-navigation
-      "Ryan Himmelwright
-ryan.himmelwright.net
-<div class='nav'>
+      "<div class='nav'>
       <ul>
       <li><a href='/'>Home</a></li>
       <li><a href='/blog/index.html'>Blog</a></li>
